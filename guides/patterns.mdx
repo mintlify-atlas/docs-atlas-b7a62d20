@@ -1,0 +1,317 @@
+---
+title: 'Patterns'
+description: 'Explore all 36 patterns available in Lumidot, organized by category'
+---
+
+Lumidot provides 36 unique animation patterns organized into 9 categories. Each pattern creates a distinct visual effect by animating specific dots in the grid.
+
+## Pattern Categories
+
+<Accordion title="Solo Patterns">
+  Single dot animations that highlight specific positions in the grid.
+
+  ### `solo-center`
+  Animates only the center dot of the grid.
+  
+  ```tsx
+  <Lumidot pattern="solo-center" />
+  ```
+
+  ### `solo-tl`
+  Animates only the top-left corner dot.
+  
+  ```tsx
+  <Lumidot pattern="solo-tl" />
+  ```
+
+  ### `solo-br`
+  Animates only the bottom-right corner dot.
+  
+  ```tsx
+  <Lumidot pattern="solo-br" />
+  ```
+</Accordion>
+
+<Accordion title="Line Patterns">
+  Horizontal, vertical, and diagonal line animations.
+
+  ### Horizontal Lines
+  
+  ```tsx
+  <Lumidot pattern="line-h-top" />    // Top row
+  <Lumidot pattern="line-h-mid" />    // Middle row
+  <Lumidot pattern="line-h-bot" />    // Bottom row
+  ```
+
+  ### Vertical Lines
+  
+  ```tsx
+  <Lumidot pattern="line-v-left" />   // Left column
+  <Lumidot pattern="line-v-mid" />    // Middle column
+  <Lumidot pattern="line-v-right" />  // Right column
+  ```
+
+  ### Diagonal Lines
+  
+  ```tsx
+  <Lumidot pattern="line-diag-1" />   // Top-left to bottom-right
+  <Lumidot pattern="line-diag-2" />   // Top-right to bottom-left
+  ```
+</Accordion>
+
+<Accordion title="Corners & Cross">
+  Patterns that animate the four corners or create a cross shape.
+
+  ### `corners-only`
+  Animates each corner dot sequentially (frame-by-frame).
+  
+  ```tsx
+  <Lumidot pattern="corners-only" />
+  ```
+
+  ### `corners-sync`
+  Animates all four corners simultaneously.
+  
+  ```tsx
+  <Lumidot pattern="corners-sync" />
+  ```
+
+  ### `plus-hollow`
+  Creates a plus/cross shape with dots at the midpoints of each edge (frame-by-frame).
+  
+  ```tsx
+  <Lumidot pattern="plus-hollow" />
+  ```
+
+  <Info>
+    `corners-only` and `plus-hollow` use sequence mode, cycling through frames every 1250ms.
+  </Info>
+</Accordion>
+
+<Accordion title="Shape Patterns">
+  L-shapes and T-shapes formed by combining edges.
+
+  ### L-Shapes
+  
+  ```tsx
+  <Lumidot pattern="l-tl" />  // Top and left edges
+  <Lumidot pattern="l-tr" />  // Top and right edges
+  <Lumidot pattern="l-bl" />  // Bottom and left edges
+  <Lumidot pattern="l-br" />  // Bottom and right edges
+  ```
+
+  ### T-Shapes
+  
+  ```tsx
+  <Lumidot pattern="t-top" />    // Top edge + middle column
+  <Lumidot pattern="t-bot" />    // Bottom edge + middle column
+  <Lumidot pattern="t-left" />   // Left edge + middle row
+  <Lumidot pattern="t-right" />  // Right edge + middle row
+  ```
+</Accordion>
+
+<Accordion title="Duo Patterns">
+  Two-dot patterns for minimal, focused animations.
+
+  ### `duo-h`
+  Left and right dots of the middle row.
+  
+  ```tsx
+  <Lumidot pattern="duo-h" />
+  ```
+
+  ### `duo-v`
+  Top and bottom dots of the middle column.
+  
+  ```tsx
+  <Lumidot pattern="duo-v" />
+  ```
+
+  ### `duo-diag`
+  Top-left and bottom-right corners.
+  
+  ```tsx
+  <Lumidot pattern="duo-diag" />
+  ```
+</Accordion>
+
+<Accordion title="Frame Patterns">
+  Perimeter animations that outline the grid.
+
+  ### `frame`
+  Animates the perimeter in order (clockwise wave).
+  
+  ```tsx
+  <Lumidot pattern="frame" />
+  ```
+
+  ### `frame-sync`
+  Animates all perimeter dots simultaneously.
+  
+  ```tsx
+  <Lumidot pattern="frame-sync" />
+  ```
+
+  <Info>
+    `frame` creates a flowing wave effect around the border, while `frame-sync` pulses all border dots together.
+  </Info>
+</Accordion>
+
+<Accordion title="Sparse Patterns">
+  Asymmetric patterns with strategic dot placement.
+
+  ### `sparse-1`
+  Main diagonal from top-left to bottom-right.
+  
+  ```tsx
+  <Lumidot pattern="sparse-1" />
+  ```
+
+  ### `sparse-2`
+  Top-right, middle-left, and bottom-center dots.
+  
+  ```tsx
+  <Lumidot pattern="sparse-2" />
+  ```
+
+  ### `sparse-3`
+  Top-center, middle-right, and bottom-left dots.
+  
+  ```tsx
+  <Lumidot pattern="sparse-3" />
+  ```
+</Accordion>
+
+<Accordion title="Wave Patterns">
+  Full-grid animations with directional waves. Use with the `direction` prop for additional control.
+
+  ### `wave-lr`
+  Wave flows left to right.
+  
+  ```tsx
+  <Lumidot pattern="wave-lr" />
+  ```
+
+  ### `wave-rl`
+  Wave flows right to left.
+  
+  ```tsx
+  <Lumidot pattern="wave-rl" />
+  ```
+
+  ### `wave-tb`
+  Wave flows top to bottom.
+  
+  ```tsx
+  <Lumidot pattern="wave-tb" />
+  ```
+
+  ### `wave-bt`
+  Wave flows bottom to top.
+  
+  ```tsx
+  <Lumidot pattern="wave-bt" />
+  ```
+
+  <Note>
+    Wave patterns automatically override the `direction` prop with their built-in direction.
+  </Note>
+</Accordion>
+
+<Accordion title="Other Patterns">
+  Special patterns that don't fit into other categories.
+
+  ### `spiral`
+  Animates dots in a spiral sequence (frame-by-frame): top row → right column → bottom row (reversed) → left column (reversed).
+  
+  ```tsx
+  <Lumidot pattern="spiral" />
+  ```
+
+  ### `all`
+  Animates all dots in the grid with a diagonal wave effect.
+  
+  ```tsx
+  <Lumidot pattern="all" />
+  ```
+
+  <Info>
+    `spiral` respects the `direction` prop and reverses the sequence when `direction` is `'rtl'` or `'btt'`.
+  </Info>
+</Accordion>
+
+## Animation Modes
+
+Lumidot automatically determines the animation mode based on the pattern:
+
+<Tabs>
+  <Tab title="Wave Mode">
+    Continuous pulsing animation with dots fading in and out. Most patterns use this mode.
+    
+    - Controlled by `duration` prop (default: 0.7s)
+    - Controlled by `direction` prop (default: 'ltr')
+    - Creates smooth, flowing animations
+    
+    Examples: `all`, `frame`, `line-*`, `wave-*`, `l-*`, `t-*`, `duo-*`, `sparse-*`
+  </Tab>
+  
+  <Tab title="Sequence Mode">
+    Frame-by-frame animation that cycles through different states every 1250ms.
+    
+    - Used by multi-frame patterns
+    - Frames change in intervals
+    - Not affected by `duration` or `direction` props (except `spiral`)
+    
+    Examples: `corners-only`, `plus-hollow`, `spiral`
+  </Tab>
+</Tabs>
+
+## Grid Size Considerations
+
+<Warning>
+  Patterns are designed for 3×3 grids by default. Some patterns may look different or less effective with non-square or larger grids.
+</Warning>
+
+Examples with different grid sizes:
+
+```tsx
+// Standard 3×3 grid
+<Lumidot pattern="frame" rows={3} cols={3} />
+
+// Larger 5×5 grid
+<Lumidot pattern="frame" rows={5} cols={5} />
+
+// Rectangular 3×5 grid
+<Lumidot pattern="line-h-mid" rows={3} cols={5} />
+```
+
+## Pattern Selection Guide
+
+<CardGroup cols={2}>
+  <Card title="Minimal & Subtle" icon="circle-dot">
+    Use `solo-*`, `duo-*`, or `sparse-*` patterns for understated loading indicators.
+  </Card>
+  
+  <Card title="Attention-Grabbing" icon="sparkles">
+    Use `all`, `frame`, or `wave-*` patterns for prominent loading states.
+  </Card>
+  
+  <Card title="Directional Flow" icon="arrow-right">
+    Use `line-*` or `wave-*` patterns to indicate direction or progress.
+  </Card>
+  
+  <Card title="Geometric Design" icon="shapes">
+    Use `l-*`, `t-*`, or `plus-hollow` patterns for structured, geometric aesthetics.
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Colors" icon="palette" href="/guides/colors">
+    Explore 20 color variants
+  </Card>
+  <Card title="Customization" icon="sliders" href="/guides/customization">
+    Learn about scale, glow, duration, and direction
+  </Card>
+</CardGroup>

@@ -1,80 +1,241 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: Quickstart
+description: Get started with Lumidot in 60 seconds
 ---
 
-## Get started in three steps
+# Quickstart
 
-Get your documentation site running locally and make your first customization.
+Get Lumidot up and running in your React project in under a minute.
 
-### Step 1: Set up your local environment
+<Steps>
+  <Step title="Install Lumidot">
+    Install the package using your preferred package manager:
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+    <CodeGroup>
+    ```bash npm
+    npm install lumidot
+    ```
 
-### Step 2: Deploy your changes
+    ```bash yarn
+    yarn add lumidot
+    ```
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    ```bash pnpm
+    pnpm add lumidot
+    ```
+    </CodeGroup>
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+    <Note>
+      Lumidot requires React 18.0.0 or higher. It works with both React 18 and React 19.
+    </Note>
+  </Step>
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+  <Step title="Import and use">
+    Import the `Lumidot` component and add it to your application:
 
-### Step 3: Go live
+    ```tsx
+    import { Lumidot } from 'lumidot';
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+    function App() {
+      return (
+        <div>
+          <h1>Loading...</h1>
+          <Lumidot />
+        </div>
+      );
+    }
+    ```
+
+    That's it! You now have a beautiful 3x3 blue dot-grid loading animation.
+  </Step>
+
+  <Step title="Customize (optional)">
+    Try different patterns and colors:
+
+    <CodeGroup>
+    ```tsx Different patterns
+    import { Lumidot } from 'lumidot';
+
+    function App() {
+      return (
+        <>
+          <Lumidot pattern="spiral" />
+          <Lumidot pattern="wave-lr" />
+          <Lumidot pattern="corners-only" />
+        </>
+      );
+    }
+    ```
+
+    ```tsx Different colors
+    import { Lumidot } from 'lumidot';
+
+    function App() {
+      return (
+        <>
+          <Lumidot variant="purple" />
+          <Lumidot variant="emerald" />
+          <Lumidot variant="rose" />
+        </>
+      );
+    }
+    ```
+
+    ```tsx Custom grid size
+    import { Lumidot } from 'lumidot';
+
+    function App() {
+      return (
+        <>
+          <Lumidot rows={5} cols={5} />
+          <Lumidot rows={2} cols={8} />
+          <Lumidot rows={7} cols={3} />
+        </>
+      );
+    }
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
+
+## Common use cases
+
+Here are some practical examples to get you started:
+
+### Loading indicator
+
+Display a loading state while fetching data:
+
+```tsx
+import { Lumidot } from 'lumidot';
+
+function DataComponent() {
+  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch('/api/data')
+      .then(res => res.json())
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
+        <Lumidot pattern="wave-lr" variant="blue" />
+      </div>
+    );
+  }
+
+  return <div>{/* render data */}</div>;
+}
+```
+
+### Full-page loader
+
+Create a centered full-page loading screen:
+
+```tsx
+import { Lumidot } from 'lumidot';
+
+function FullPageLoader() {
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+      backgroundColor: '#000'
+    }}>
+      <Lumidot 
+        pattern="spiral" 
+        variant="cyan" 
+        rows={5} 
+        cols={5} 
+        scale={2}
+      />
+    </div>
+  );
+}
+```
+
+### Inline loading state
+
+Show a small loader inline with content:
+
+```tsx
+import { Lumidot } from 'lumidot';
+
+function InlineLoader() {
+  return (
+    <button disabled>
+      <span>Processing</span>
+      <Lumidot pattern="solo-center" scale={0.6} glow={4} />
+    </button>
+  );
+}
+```
+
+### TypeScript usage
+
+Lumidot is fully typed. Import types for type-safe usage:
+
+```tsx
+import { Lumidot, LumidotProps, LumidotPattern, LumidotVariant } from 'lumidot';
+
+const myPattern: LumidotPattern = 'wave-lr';
+const myVariant: LumidotVariant = 'purple';
+
+const props: LumidotProps = {
+  pattern: myPattern,
+  variant: myVariant,
+  rows: 5,
+  cols: 5,
+  duration: 1.2,
+  glow: 10,
+};
+
+function TypedComponent() {
+  return <Lumidot {...props} />;
+}
+```
+
+## Available props
+
+Here's a quick reference of all available props with their default values:
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `pattern` | `LumidotPattern` | `'all'` | Animation pattern (36 options) |
+| `variant` | `LumidotVariant` | `'blue'` | Color variant (20 options) |
+| `rows` | `number` | `3` | Number of rows in the grid |
+| `cols` | `number` | `3` | Number of columns in the grid |
+| `direction` | `LumidotDirection` | `'ltr'` | Wave direction: `'ltr'`, `'rtl'`, `'ttb'`, `'btt'` |
+| `scale` | `number` | `1` | Size multiplier (1 = 20px per dot) |
+| `glow` | `number` | `8` | Glow intensity |
+| `duration` | `number` | `0.7` | Animation duration in seconds |
+| `className` | `string` | — | Additional CSS classes |
+| `style` | `CSSProperties` | — | Inline styles |
+| `testId` | `string` | — | Sets `data-testid` attribute |
+
+For detailed documentation on all props, see the [Props](/api/props) reference.
 
 ## Next steps
 
-Now that you have your docs running, explore these key features:
-
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card title="Explore patterns" icon="shapes" href="/guides/patterns">
+    Browse all 36 animation patterns
+  </Card>
+  <Card title="Try colors" icon="palette" href="/guides/colors">
+    See all 20 color variants
+  </Card>
+  <Card title="Customize" icon="sliders" href="/guides/customization">
+    Learn about scale, glow, duration, and more
+  </Card>
+  <Card title="API reference" icon="code" href="/api/lumidot-component">
+    Complete API documentation
+  </Card>
 </CardGroup>
-
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>

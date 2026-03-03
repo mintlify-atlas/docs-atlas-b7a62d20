@@ -1,0 +1,79 @@
+---
+title: Introduction
+description: Dot-grid loading animations for React. Tiny, flexible, beautiful.
+---
+
+# Introduction to Lumidot
+
+Lumidot is a React library that provides beautiful dot-grid loading animations with extensive customization options. With 36 unique patterns and 20 color variants, you can create loading states that perfectly match your application's design.
+
+<CardGroup cols={2}>
+  <Card title="36 patterns" icon="grid">
+    From simple single dots to complex waves and spirals
+  </Card>
+  <Card title="20 color variants" icon="palette">
+    Pre-configured colors from amber to yellow
+  </Card>
+  <Card title="Lightweight" icon="feather">
+    Tiny bundle size with zero dependencies
+  </Card>
+  <Card title="Accessible" icon="universal-access">
+    Respects prefers-reduced-motion automatically
+  </Card>
+</CardGroup>
+
+## What makes Lumidot special
+
+**Flexible grid system**: Configure custom grid sizes with the `rows` and `cols` props to create loaders from 1x1 to any size you need.
+
+**Smart animations**: Two animation modes work automatically based on your chosen pattern. Wave animations pulse continuously across the grid, while sequence animations transition between frames.
+
+**Production ready**: Built with TypeScript, fully typed, and tested. Works with React 18 and 19.
+
+**Zero configuration**: Works beautifully out of the box with sensible defaults, but offers deep customization when you need it.
+
+## Quick preview
+
+Here's the simplest possible usage:
+
+```tsx
+import { Lumidot } from 'lumidot';
+
+function App() {
+  return <Lumidot />;
+}
+```
+
+This renders a 3x3 blue dot grid with the default wave animation. Customize it with props:
+
+```tsx
+<Lumidot 
+  pattern="spiral" 
+  variant="purple" 
+  rows={5} 
+  cols={5} 
+  scale={1.5} 
+/>
+```
+
+<Note>
+  Lumidot automatically respects the user's `prefers-reduced-motion` setting, disabling animations for users who prefer reduced motion.
+</Note>
+
+## Animation modes
+
+Lumidot uses two animation modes, automatically selected based on the pattern:
+
+- **Wave mode**: Continuous pulsing animation that flows across the grid. Control the speed with `duration` and the flow direction with `direction`.
+- **Sequence mode**: Frame-by-frame animation that cycles through different states. Used by patterns like `corners-only`, `plus-hollow`, and `spiral`.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/installation">
+    Install Lumidot in your React project
+  </Card>
+  <Card title="Quick start" icon="rocket" href="/quickstart">
+    Get up and running in 60 seconds
+  </Card>
+</CardGroup>

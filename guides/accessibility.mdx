@@ -1,0 +1,452 @@
+---
+title: 'Accessibility'
+description: 'Accessibility features and best practices for Lumidot'
+---
+
+Lumidot is designed with accessibility in mind, automatically respecting user preferences and following best practices for loading indicators.
+
+## Prefers Reduced Motion
+
+Lumidot automatically respects the `prefers-reduced-motion` media query, which indicates that users prefer reduced or minimal animation.
+
+### How It Works
+
+<Tabs>
+  <Tab title="Wave Mode Patterns">
+    For patterns using wave mode (most patterns), animations continue normally even when `prefers-reduced-motion` is enabled, as the wave animation is subtle and doesn't involve rapid or jarring motion.
+    
+    ```tsx
+    // Wave mode patterns are not affected
+    <Lumidot pattern="all" />       // Continues animating
+    <Lumidot pattern="frame" />     // Continues animating
+    <Lumidot pattern="wave-lr" />   // Continues animating
+    ```
+  </Tab>
+  
+  <Tab title="Sequence Mode Patterns">
+    For patterns using sequence mode (`corners-only`, `plus-hollow`, `spiral`), Lumidot automatically disables frame cycling when `prefers-reduced-motion` is enabled. All relevant dots remain visible simultaneously instead of cycling.
+    
+    ```tsx
+    // When prefers-reduced-motion is enabled:
+    <Lumidot pattern="corners-only" />  // Shows all 4 corners at once
+    <Lumidot pattern="plus-hollow" />   // Shows all 4 plus dots at once
+    <Lumidot pattern="spiral" />        // Shows all spiral dots at once
+    ```
+    
+    <Info>
+      This ensures users with motion sensitivity can still see the loading state without experiencing rapid frame changes.
+    </Info>
+  </Tab>
+</Tabs>
+
+### Testing Reduced Motion
+
+You can test the reduced motion behavior in several ways:
+
+<CodeGroup>
+
+```bash macOS System Preferences
+# Enable reduced motion:
+# System Preferences → Accessibility → Display → Reduce motion
+```
+
+```bash Windows Settings
+# Enable reduced motion:
+# Settings → Ease of Access → Display → Show animations in Windows
+```
+
+```css Browser DevTools
+/* In Chrome/Edge DevTools:
+   1. Open DevTools (F12)
+   2. Cmd/Ctrl + Shift + P
+   3. Type "reduced motion"
+   4. Select "Emulate CSS prefers-reduced-motion" */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Reduced motion styles active */
+}
+```
+
+```tsx Testing Library
+import { render } from '@testing-library/react';
+import { Lumidot } from 'lumidot';
+
+// Mock matchMedia to simulate reduced motion
+beforeAll(() => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation(query => ({
+      matches: query === '(prefers-reduced-motion: reduce)',
+      media: query,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    })),
+  });
+});
+
+test('respects reduced motion', () => {
+  const { container } = render(<Lumidot pattern="spiral" />);
+  // All dots should be visible when reduced motion is active
+});
+```
+
+</CodeGroup>
+
+## Semantic HTML
+
+Lumidot uses semantic HTML attributes to ensure screen readers and assistive technologies can properly interpret the loading state.
+
+### ARIA Attributes
+
+```tsx
+<Lumidot pattern="all" variant="blue" />
+```
+
+Renders as:
+
+```html
+<span role="status" aria-label="Loading" data-lumidot="" ...>
+  <!-- dot elements -->
+</span>
+```
+
+- `role="status"` — Indicates this is a status update region
+- `aria-label="Loading"` — Provides a text alternative for screen readers
+
+<Info>
+  The `role="status"` is a live region that announces changes politely, without interrupting the user.
+</Info>
+
+## Screen Reader Announcements
+
+When a Lumidot loader appears, screen readers will announce "Loading" to inform users that content is being loaded.
+
+### Best Practices
+
+<Tabs>
+  <Tab title="Inline Loading">
+    For inline loading indicators, the default label is sufficient:
+    
+    ```tsx
+    <button disabled>
+      <Lumidot scale={0.6} pattern="line-h-mid" variant="white" />
+      <span>Processing...</span>
+    </button>
+    ```
+    
+    Screen readers will announce: "Loading, Processing..., button, disabled"
+  </Tab>
+  
+  <Tab title="Full-Page Loading">
+    For full-page loaders, consider adding additional context:
+    
+    ```tsx
+    <div role="region" aria-label="Loading content">
+      <Lumidot pattern="all" variant="blue" scale={2} />
+      <p className="sr-only">Please wait while we load your data</p>
+    </div>
+    ```
+    
+    ```css
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Dynamic Updates">
+    For long-running operations, provide progress updates:
+    
+    ```tsx
+    function ProgressLoader({ progress }: { progress: number }) {
+      return (
+        <div role="status" aria-live="polite">
+          <Lumidot pattern="frame" variant="emerald" />
+          <p className="sr-only">
+            Loading: {progress}% complete
+          </p>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Color Contrast
+
+Ensure sufficient color contrast between the loader and its background for users with visual impairments.
+
+### WCAG Guidelines
+
+<Warning>
+  Animated content does not have strict WCAG contrast requirements, but for loading indicators that may be visible for extended periods, aim for at least 3:1 contrast ratio.
+</Warning>
+
+### Contrast Examples
+
+<CodeGroup>
+
+```tsx Good Contrast (Dark BG)
+<div style={{ background: '#1f2937', padding: '40px' }}>
+  <Lumidot variant="cyan" glow={12} />     {/* High contrast */}
+  <Lumidot variant="emerald" glow={12} /> {/* High contrast */}
+  <Lumidot variant="white" glow={10} />   {/* High contrast */}
+</div>
+```
+
+```tsx Good Contrast (Light BG)
+<div style={{ background: '#ffffff', padding: '40px' }}>
+  <Lumidot variant="indigo" glow={4} />   {/* Good contrast */}
+  <Lumidot variant="black" glow={6} />    {/* High contrast */}
+  <Lumidot variant="purple" glow={3} />   {/* Good contrast */}
+</div>
+```
+
+```tsx Poor Contrast
+<div style={{ background: '#ffffff', padding: '40px' }}>
+  <Lumidot variant="white" glow={2} />    {/* ❌ Too low */}
+  <Lumidot variant="yellow" glow={0} />   {/* ❌ Too low */}
+</div>
+
+<div style={{ background: '#000000', padding: '40px' }}>
+  <Lumidot variant="black" glow={0} />    {/* ❌ Invisible */}
+  <Lumidot variant="slate" glow={2} />    {/* ❌ Too low */}
+</div>
+```
+
+</CodeGroup>
+
+### Checking Contrast
+
+Use browser DevTools or online tools:
+
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- Chrome DevTools: Elements → Styles → Color picker shows contrast ratio
+- [Colour Contrast Analyser](https://www.tpgi.com/color-contrast-checker/)
+
+## Keyboard Navigation
+
+Lumidot loaders are not interactive elements and do not receive keyboard focus, which is appropriate for loading indicators.
+
+### Focus Management
+
+<Tabs>
+  <Tab title="Button Loaders">
+    When a button is loading, disable it and trap focus:
+    
+    ```tsx
+    function SubmitButton({ isLoading }: { isLoading: boolean }) {
+      return (
+        <button disabled={isLoading} type="submit">
+          {isLoading ? (
+            <>
+              <Lumidot scale={0.5} pattern="line-h-mid" variant="white" />
+              <span>Submitting...</span>
+            </>
+          ) : (
+            'Submit'
+          )}
+        </button>
+      );
+    }
+    ```
+    
+    <Info>
+      The `disabled` attribute prevents keyboard interaction while loading.
+    </Info>
+  </Tab>
+  
+  <Tab title="Modal Loaders">
+    For modal loading states, consider focus trap:
+    
+    ```tsx
+    import FocusTrap from 'focus-trap-react';
+    
+    function LoadingModal({ isOpen }: { isOpen: boolean }) {
+      if (!isOpen) return null;
+      
+      return (
+        <FocusTrap>
+          <div role="dialog" aria-modal="true" aria-label="Loading">
+            <Lumidot pattern="all" variant="blue" scale={2} />
+            <p>Loading your data...</p>
+          </div>
+        </FocusTrap>
+      );
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Page Loaders">
+    For full-page loaders, consider auto-focusing the first interactive element when loading completes:
+    
+    ```tsx
+    function PageLoader({ isLoading, children }: { isLoading: boolean; children: React.ReactNode }) {
+      const firstInputRef = React.useRef<HTMLInputElement>(null);
+      
+      React.useEffect(() => {
+        if (!isLoading && firstInputRef.current) {
+          firstInputRef.current.focus();
+        }
+      }, [isLoading]);
+      
+      if (isLoading) {
+        return (
+          <div style={{ display: 'grid', placeItems: 'center', height: '100vh' }}>
+            <Lumidot pattern="frame" variant="blue" scale={2} />
+          </div>
+        );
+      }
+      
+      return <>{children}</>;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Timing Considerations
+
+### Minimum Display Time
+
+For very fast operations, consider showing the loader for a minimum duration to avoid jarring flashes:
+
+```tsx
+function useMinimumLoading(isLoading: boolean, minDuration = 500) {
+  const [showLoader, setShowLoader] = React.useState(false);
+  const startTimeRef = React.useRef<number | null>(null);
+
+  React.useEffect(() => {
+    if (isLoading) {
+      startTimeRef.current = Date.now();
+      setShowLoader(true);
+    } else if (startTimeRef.current) {
+      const elapsed = Date.now() - startTimeRef.current;
+      const remaining = Math.max(0, minDuration - elapsed);
+      
+      setTimeout(() => {
+        setShowLoader(false);
+        startTimeRef.current = null;
+      }, remaining);
+    }
+  }, [isLoading, minDuration]);
+
+  return showLoader;
+}
+
+function MyComponent() {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const showLoader = useMinimumLoading(isLoading, 500);
+  
+  return showLoader ? <Lumidot pattern="all" /> : <div>Content</div>;
+}
+```
+
+### Maximum Wait Time
+
+For long operations, provide feedback or alternatives:
+
+```tsx
+function LongLoadingIndicator() {
+  const [seconds, setSeconds] = React.useState(0);
+  
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds(s => s + 1);
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
+  return (
+    <div role="status" aria-live="polite">
+      <Lumidot pattern="frame" variant="blue" scale={1.5} />
+      <p className="sr-only">Still loading... {seconds} seconds elapsed</p>
+      {seconds > 10 && (
+        <p style={{ marginTop: '1rem' }}>
+          This is taking longer than expected. <button>Cancel</button>
+        </p>
+      )}
+    </div>
+  );
+}
+```
+
+## Accessibility Checklist
+
+Use this checklist to ensure your Lumidot implementation is accessible:
+
+<Accordion title="Visual Accessibility">
+  - [ ] Sufficient color contrast (3:1 minimum)
+  - [ ] Loader is visible against background
+  - [ ] Glow effect is not overwhelming
+  - [ ] Animation is not too fast or jarring (consider `duration` prop)
+  - [ ] Loader does not flash for very short operations
+</Accordion>
+
+<Accordion title="Motion Accessibility">
+  - [ ] `prefers-reduced-motion` is respected (automatic)
+  - [ ] Sequence mode patterns show all dots when motion is reduced (automatic)
+  - [ ] Animation duration is reasonable (0.4-1.2s recommended)
+  - [ ] No rapid flashing or strobing effects
+</Accordion>
+
+<Accordion title="Screen Reader Accessibility">
+  - [ ] `role="status"` is present (automatic)
+  - [ ] `aria-label="Loading"` is present (automatic)
+  - [ ] Additional context provided for complex loaders
+  - [ ] Progress updates announced for long operations
+  - [ ] Loading state is announced when it appears
+</Accordion>
+
+<Accordion title="Keyboard Accessibility">
+  - [ ] Interactive elements are disabled during loading
+  - [ ] Focus is managed appropriately
+  - [ ] Focus returns to appropriate element after loading
+  - [ ] No keyboard traps
+</Accordion>
+
+<Accordion title="Timing & Feedback">
+  - [ ] Minimum display time for fast operations (300-500ms)
+  - [ ] Maximum wait time before offering alternatives (10-15s)
+  - [ ] Progress indication for operations >3 seconds
+  - [ ] Cancel/retry options for long operations
+</Accordion>
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="WCAG Guidelines" icon="book" href="https://www.w3.org/WAI/WCAG21/quickref/">
+    Web Content Accessibility Guidelines
+  </Card>
+  
+  <Card title="MDN Accessibility" icon="file-lines" href="https://developer.mozilla.org/en-US/docs/Web/Accessibility">
+    Accessibility documentation and guides
+  </Card>
+  
+  <Card title="A11y Project" icon="universal-access" href="https://www.a11yproject.com/">
+    Community-driven accessibility resources
+  </Card>
+  
+  <Card title="WebAIM" icon="graduation-cap" href="https://webaim.org/">
+    Web accessibility training and tools
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Patterns" icon="grid" href="/guides/patterns">
+    Explore all 36 animation patterns
+  </Card>
+  <Card title="Colors" icon="palette" href="/guides/colors">
+    Learn about color variants
+  </Card>
+</CardGroup>

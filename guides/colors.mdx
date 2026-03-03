@@ -1,0 +1,354 @@
+---
+title: 'Colors'
+description: 'All 20 color variants available in Lumidot with hex values'
+---
+
+Lumidot includes 20 built-in color variants, each optimized for vibrant, eye-catching animations with automatic glow effects.
+
+## Using Color Variants
+
+Set the color using the `variant` prop:
+
+```tsx
+<Lumidot variant="blue" />      // Default
+<Lumidot variant="emerald" />
+<Lumidot variant="fuchsia" />
+```
+
+## All Color Variants
+
+<Tabs>
+  <Tab title="Warm Colors">
+    ### Amber
+    ```tsx
+    <Lumidot variant="amber" />
+    ```
+    **Hex:** `#fcd34d`
+
+    ---
+
+    ### Orange
+    ```tsx
+    <Lumidot variant="orange" />
+    ```
+    **Hex:** `#fdba74`
+
+    ---
+
+    ### Red
+    ```tsx
+    <Lumidot variant="red" />
+    ```
+    **Hex:** `#fca5a5`
+
+    ---
+
+    ### Rose
+    ```tsx
+    <Lumidot variant="rose" />
+    ```
+    **Hex:** `#fda4af`
+
+    ---
+
+    ### Pink
+    ```tsx
+    <Lumidot variant="pink" />
+    ```
+    **Hex:** `#f9a8d4`
+
+    ---
+
+    ### Yellow
+    ```tsx
+    <Lumidot variant="yellow" />
+    ```
+    **Hex:** `#fde047`
+  </Tab>
+
+  <Tab title="Cool Colors">
+    ### Blue
+    ```tsx
+    <Lumidot variant="blue" />
+    ```
+    **Hex:** `#93c5fd` (Default)
+
+    ---
+
+    ### Sky
+    ```tsx
+    <Lumidot variant="sky" />
+    ```
+    **Hex:** `#7dd3fc`
+
+    ---
+
+    ### Cyan
+    ```tsx
+    <Lumidot variant="cyan" />
+    ```
+    **Hex:** `#67e8f9`
+
+    ---
+
+    ### Teal
+    ```tsx
+    <Lumidot variant="teal" />
+    ```
+    **Hex:** `#5eead4`
+
+    ---
+
+    ### Emerald
+    ```tsx
+    <Lumidot variant="emerald" />
+    ```
+    **Hex:** `#6ee7b7`
+
+    ---
+
+    ### Green
+    ```tsx
+    <Lumidot variant="green" />
+    ```
+    **Hex:** `#86efac`
+
+    ---
+
+    ### Lime
+    ```tsx
+    <Lumidot variant="lime" />
+    ```
+    **Hex:** `#bef264`
+  </Tab>
+
+  <Tab title="Purple & Violet">
+    ### Indigo
+    ```tsx
+    <Lumidot variant="indigo" />
+    ```
+    **Hex:** `#a5b4fc`
+
+    ---
+
+    ### Violet
+    ```tsx
+    <Lumidot variant="violet" />
+    ```
+    **Hex:** `#c4b5fd`
+
+    ---
+
+    ### Purple
+    ```tsx
+    <Lumidot variant="purple" />
+    ```
+    **Hex:** `#d8b4fe`
+
+    ---
+
+    ### Fuchsia
+    ```tsx
+    <Lumidot variant="fuchsia" />
+    ```
+    **Hex:** `#f0abfc`
+  </Tab>
+
+  <Tab title="Neutral">
+    ### White
+    ```tsx
+    <Lumidot variant="white" />
+    ```
+    **Hex:** `#ffffff`
+
+    <Note>
+      Best used on dark backgrounds. Consider reducing `glow` for subtle effects.
+    </Note>
+
+    ---
+
+    ### Slate
+    ```tsx
+    <Lumidot variant="slate" />
+    ```
+    **Hex:** `#cbd5e1`
+
+    ---
+
+    ### Black
+    ```tsx
+    <Lumidot variant="black" />
+    ```
+    **Hex:** `#000000`
+
+    <Note>
+      Best used on light backgrounds. Works well with high `glow` values for contrast.
+    </Note>
+  </Tab>
+</Tabs>
+
+## Color Reference Table
+
+| Variant | Hex Code | Category |
+|---------|----------|----------|
+| `amber` | `#fcd34d` | Warm |
+| `blue` | `#93c5fd` | Cool |
+| `cyan` | `#67e8f9` | Cool |
+| `emerald` | `#6ee7b7` | Cool |
+| `fuchsia` | `#f0abfc` | Purple/Violet |
+| `green` | `#86efac` | Cool |
+| `indigo` | `#a5b4fc` | Purple/Violet |
+| `lime` | `#bef264` | Cool |
+| `orange` | `#fdba74` | Warm |
+| `pink` | `#f9a8d4` | Warm |
+| `purple` | `#d8b4fe` | Purple/Violet |
+| `red` | `#fca5a5` | Warm |
+| `rose` | `#fda4af` | Warm |
+| `sky` | `#7dd3fc` | Cool |
+| `slate` | `#cbd5e1` | Neutral |
+| `teal` | `#5eead4` | Cool |
+| `violet` | `#c4b5fd` | Purple/Violet |
+| `white` | `#ffffff` | Neutral |
+| `black` | `#000000` | Neutral |
+| `yellow` | `#fde047` | Warm |
+
+## How Glow Works
+
+Each color variant includes an automatic glow effect that enhances visibility and creates depth:
+
+```tsx
+// Default glow (8px)
+<Lumidot variant="emerald" glow={8} />
+
+// Subtle glow
+<Lumidot variant="emerald" glow={4} />
+
+// Intense glow
+<Lumidot variant="emerald" glow={16} />
+
+// No glow
+<Lumidot variant="emerald" glow={0} />
+```
+
+<Info>
+  The glow color is automatically calculated by brightening the base color by 50% and adding transparency. This ensures consistent, harmonious glow effects across all variants.
+</Info>
+
+## Color Psychology
+
+Choose colors that align with your use case:
+
+<CardGroup cols={2}>
+  <Card title="Action & Urgency" icon="exclamation">
+    **Red, Orange, Yellow**
+    
+    Use for critical operations, warnings, or time-sensitive actions.
+  </Card>
+  
+  <Card title="Success & Completion" icon="check">
+    **Green, Emerald, Teal**
+    
+    Use for successful operations, confirmations, or completed tasks.
+  </Card>
+  
+  <Card title="Information & Trust" icon="info">
+    **Blue, Sky, Cyan**
+    
+    Use for informational states, data loading, or neutral processes.
+  </Card>
+  
+  <Card title="Premium & Creative" icon="wand-magic-sparkles">
+    **Purple, Violet, Fuchsia, Pink**
+    
+    Use for premium features, creative tools, or special experiences.
+  </Card>
+</CardGroup>
+
+## Dark vs Light Backgrounds
+
+<Tabs>
+  <Tab title="Dark Backgrounds">
+    Most colors work beautifully on dark backgrounds. Recommended variants:
+    
+    ```tsx
+    // High contrast, vibrant
+    <Lumidot variant="cyan" />
+    <Lumidot variant="emerald" />
+    <Lumidot variant="fuchsia" />
+    <Lumidot variant="yellow" />
+    
+    // Soft, elegant
+    <Lumidot variant="blue" />
+    <Lumidot variant="purple" />
+    <Lumidot variant="rose" />
+    
+    // Neutral
+    <Lumidot variant="white" glow={12} />
+    <Lumidot variant="slate" glow={10} />
+    ```
+  </Tab>
+  
+  <Tab title="Light Backgrounds">
+    For light backgrounds, consider reducing glow or using darker variants:
+    
+    ```tsx
+    // Vibrant with reduced glow
+    <Lumidot variant="indigo" glow={4} />
+    <Lumidot variant="emerald" glow={4} />
+    <Lumidot variant="rose" glow={4} />
+    
+    // High contrast
+    <Lumidot variant="black" glow={8} />
+    
+    // Soft, subtle
+    <Lumidot variant="slate" glow={2} />
+    ```
+    
+    <Warning>
+      Avoid `white` and very light colors on light backgrounds. They will be barely visible.
+    </Warning>
+  </Tab>
+</Tabs>
+
+## Custom Colors
+
+If you need a custom color not included in the built-in variants, you can override the color using CSS custom properties:
+
+```tsx
+<Lumidot 
+  variant="blue" 
+  style={{
+    '--lumidot-color': '#ff6b35',
+    '--lumidot-glow': '0 0 3.2px #ff6b35, 0 0 8px #ffa89060'
+  } as React.CSSProperties}
+/>
+```
+
+<Note>
+  When using custom colors, you'll need to manually define the glow effect to match your color.
+</Note>
+
+## Programmatic Access
+
+You can import the `COLORS` constant to access color values programmatically:
+
+```tsx
+import { COLORS } from 'lumidot';
+
+console.log(COLORS.emerald); // '#6ee7b7'
+console.log(COLORS.fuchsia); // '#f0abfc'
+
+// Use in your own components
+const buttonColor = COLORS.blue;
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Patterns" icon="grid" href="/guides/patterns">
+    Explore all 36 animation patterns
+  </Card>
+  <Card title="Customization" icon="sliders" href="/guides/customization">
+    Learn about scale, glow, duration, and direction
+  </Card>
+</CardGroup>

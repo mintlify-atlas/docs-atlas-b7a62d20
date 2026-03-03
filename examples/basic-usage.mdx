@@ -1,0 +1,234 @@
+---
+title: 'Basic Usage'
+description: 'Simple examples with different patterns and colors'
+---
+
+## Default Loading Animation
+
+The simplest usage with default settings:
+
+```tsx
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot />;
+}
+```
+
+This creates a 3x3 grid with blue dots and the default 'all' pattern.
+
+## Different Patterns
+
+Lumidot comes with 36 built-in patterns. Here are some common ones:
+
+<CodeGroup>
+
+```tsx Solo Center
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="solo-center" variant="purple" />;
+}
+```
+
+```tsx Frame
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="frame" variant="cyan" />;
+}
+```
+
+```tsx Corners Sync
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="corners-sync" variant="emerald" />;
+}
+```
+
+```tsx Plus Hollow
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="plus-hollow" variant="fuchsia" />;
+}
+```
+
+</CodeGroup>
+
+## Color Variants
+
+Lumidot supports 20 color variants:
+
+<CodeGroup>
+
+```tsx Blue (Default)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot variant="blue" />;
+}
+```
+
+```tsx Purple
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot variant="purple" />;
+}
+```
+
+```tsx Emerald
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot variant="emerald" />;
+}
+```
+
+```tsx Rose
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot variant="rose" />;
+}
+```
+
+```tsx Amber
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot variant="amber" />;
+}
+```
+
+```tsx Cyan
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot variant="cyan" />;
+}
+```
+
+</CodeGroup>
+
+## Line Patterns
+
+Create horizontal, vertical, and diagonal line patterns:
+
+<CodeGroup>
+
+```tsx Horizontal Line (Top)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="line-h-top" variant="sky" />;
+}
+```
+
+```tsx Horizontal Line (Middle)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="line-h-mid" variant="indigo" />;
+}
+```
+
+```tsx Vertical Line (Left)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="line-v-left" variant="teal" />;
+}
+```
+
+```tsx Diagonal Line
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="line-diag-1" variant="pink" />;
+}
+```
+
+</CodeGroup>
+
+## Shape Patterns
+
+Create L-shapes and T-shapes:
+
+<CodeGroup>
+
+```tsx L-Shape (Top-Left)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="l-tl" variant="lime" />;
+}
+```
+
+```tsx L-Shape (Bottom-Right)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="l-br" variant="orange" />;
+}
+```
+
+```tsx T-Shape (Top)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="t-top" variant="violet" />;
+}
+```
+
+```tsx T-Shape (Left)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot pattern="t-left" variant="red" />;
+}
+```
+
+</CodeGroup>
+
+## Customizing Appearance
+
+Adjust glow intensity and scale:
+
+<CodeGroup>
+
+```tsx No Glow
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot glow={0} variant="slate" />;
+}
+```
+
+```tsx Intense Glow
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot glow={20} variant="fuchsia" />;
+}
+```
+
+```tsx Large Scale
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot scale={2} variant="cyan" />;
+}
+```
+
+```tsx Small Scale
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return <Lumidot scale={0.5} variant="emerald" />;
+}
+```
+
+</CodeGroup>

@@ -1,0 +1,125 @@
+---
+title: Props
+description: Comprehensive props documentation for the Lumidot component
+---
+
+All props for the Lumidot component are optional and have sensible defaults.
+
+## Props Reference
+
+<ParamField path="variant" type="LumidotVariant" default="blue">
+  Color variant for the dots. Available options: `amber`, `blue`, `cyan`, `emerald`, `fuchsia`, `green`, `indigo`, `lime`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `slate`, `teal`, `violet`, `white`, `black`, `yellow`.
+</ParamField>
+
+<ParamField path="pattern" type="LumidotPattern" default="all">
+  Animation pattern to display. Available patterns:
+  
+  **Solo patterns:** `solo-center`, `solo-tl`, `solo-br`
+  
+  **Line patterns:** `line-h-top`, `line-h-mid`, `line-h-bot`, `line-v-left`, `line-v-mid`, `line-v-right`, `line-diag-1`, `line-diag-2`
+  
+  **Corner patterns:** `corners-only`, `corners-sync`
+  
+  **Shape patterns:** `plus-hollow`, `l-tl`, `l-tr`, `l-bl`, `l-br`, `t-top`, `t-bot`, `t-left`, `t-right`
+  
+  **Duo patterns:** `duo-h`, `duo-v`, `duo-diag`
+  
+  **Frame patterns:** `frame`, `frame-sync`
+  
+  **Sparse patterns:** `sparse-1`, `sparse-2`, `sparse-3`
+  
+  **Wave patterns:** `wave-lr`, `wave-rl`, `wave-tb`, `wave-bt`
+  
+  **Other:** `spiral`, `all`
+</ParamField>
+
+<ParamField path="rows" type="number" default="3">
+  Number of rows in the dot grid. Must be a positive integer.
+</ParamField>
+
+<ParamField path="cols" type="number" default="3">
+  Number of columns in the dot grid. Must be a positive integer.
+</ParamField>
+
+<ParamField path="glow" type="number" default="8">
+  Glow intensity for active dots in pixels. Set to `0` to disable glow effect.
+</ParamField>
+
+<ParamField path="scale" type="number" default="1">
+  Scale multiplier for the entire component size. The base size is 20px, so `scale={2}` would result in a 40px component.
+</ParamField>
+
+<ParamField path="duration" type="number" default="0.7">
+  Animation duration in seconds for wave-based animations.
+</ParamField>
+
+<ParamField path="direction" type="LumidotDirection" default="ltr">
+  Direction of wave animations. Options:
+  - `ltr` - Left to right diagonal
+  - `rtl` - Right to left diagonal
+  - `ttb` - Top to bottom diagonal
+  - `btt` - Bottom to top diagonal
+  
+  Note: Wave patterns (`wave-lr`, `wave-rl`, `wave-tb`, `wave-bt`) have their own directional behavior that overrides this prop.
+</ParamField>
+
+<ParamField path="className" type="string">
+  Custom CSS class name to apply to the root element.
+</ParamField>
+
+<ParamField path="style" type="CSSProperties">
+  Custom inline styles to apply to the root element (React CSSProperties object).
+</ParamField>
+
+<ParamField path="testId" type="string">
+  Test ID for testing frameworks, applied as `data-testid` attribute.
+</ParamField>
+
+## Examples
+
+### Minimal Configuration
+
+```tsx
+<Lumidot />
+```
+
+Uses all defaults: blue color, all pattern, 3x3 grid, glow of 8, scale of 1, 0.7s duration, ltr direction.
+
+### Custom Colors and Pattern
+
+```tsx
+<Lumidot variant="emerald" pattern="spiral" />
+```
+
+### Large Grid with Custom Timing
+
+```tsx
+<Lumidot
+  rows={7}
+  cols={7}
+  duration={1.5}
+  pattern="wave-lr"
+/>
+```
+
+### Styled with CSS
+
+```tsx
+<Lumidot
+  variant="purple"
+  className="my-loader"
+  style={{ margin: '20px auto' }}
+/>
+```
+
+### High Intensity Glow
+
+```tsx
+<Lumidot variant="cyan" glow={20} scale={2} />
+```
+
+### No Glow Effect
+
+```tsx
+<Lumidot variant="slate" glow={0} />
+```

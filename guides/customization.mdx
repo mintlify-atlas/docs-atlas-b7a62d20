@@ -1,0 +1,471 @@
+---
+title: 'Customization'
+description: 'Customize Lumidot with scale, glow, duration, direction, and more'
+---
+
+Lumidot provides several props to customize the appearance and behavior of your loading animations.
+
+## Scale
+
+Control the physical size of the loader with the `scale` prop.
+
+### Default Size
+
+```tsx
+<Lumidot scale={1} /> // 20px (default)
+```
+
+The base size is 20px. Use `scale` to make the loader larger or smaller:
+
+```tsx
+// Small
+<Lumidot scale={0.5} /> // 10px
+
+// Default
+<Lumidot scale={1} />   // 20px
+
+// Large
+<Lumidot scale={2} />   // 40px
+
+// Extra large
+<Lumidot scale={3} />   // 60px
+```
+
+<Info>
+  The `scale` prop accepts any positive number, including decimals like `1.5` or `0.75`.
+</Info>
+
+### Responsive Scaling
+
+Combine `scale` with CSS or responsive logic:
+
+```tsx
+function ResponsiveLoader() {
+  const isMobile = window.innerWidth < 768;
+  
+  return (
+    <Lumidot 
+      scale={isMobile ? 0.8 : 1.2}
+      pattern="all"
+      variant="blue"
+    />
+  );
+}
+```
+
+## Glow
+
+Control the intensity of the glow effect with the `glow` prop.
+
+### Glow Levels
+
+```tsx
+// No glow
+<Lumidot glow={0} />
+
+// Subtle
+<Lumidot glow={4} />
+
+// Default
+<Lumidot glow={8} />
+
+// Intense
+<Lumidot glow={16} />
+
+// Maximum
+<Lumidot glow={24} />
+```
+
+<Tabs>
+  <Tab title="Visual Examples">
+    ```tsx
+    // Minimal, flat appearance
+    <Lumidot variant="cyan" glow={0} pattern="frame" />
+    
+    // Soft, subtle glow for light backgrounds
+    <Lumidot variant="indigo" glow={3} pattern="all" />
+    
+    // Standard glow for most use cases
+    <Lumidot variant="emerald" glow={8} pattern="wave-lr" />
+    
+    // Dramatic glow for dark backgrounds
+    <Lumidot variant="fuchsia" glow={20} pattern="spiral" />
+    ```
+  </Tab>
+  
+  <Tab title="Use Cases">
+    **No Glow (`glow={0}`)**
+    - Flat design aesthetics
+    - Light backgrounds
+    - Minimal, understated loaders
+    
+    **Subtle Glow (`glow={2-6}`)**
+    - Professional interfaces
+    - Daytime/light themes
+    - Secondary loading indicators
+    
+    **Default Glow (`glow={8}`)**
+    - General purpose
+    - Balanced visibility
+    - Most use cases
+    
+    **Intense Glow (`glow={12-24}`)**
+    - Dark themes
+    - High contrast environments
+    - Hero/spotlight elements
+  </Tab>
+</Tabs>
+
+## Duration
+
+Control the speed of wave animations with the `duration` prop (in seconds).
+
+### Animation Speed
+
+```tsx
+// Fast
+<Lumidot duration={0.4} />
+
+// Default
+<Lumidot duration={0.7} />
+
+// Slow
+<Lumidot duration={1.2} />
+
+// Very slow
+<Lumidot duration={2} />
+```
+
+<Note>
+  The `duration` prop only affects **wave mode** patterns. Sequence mode patterns (like `corners-only` and `spiral`) cycle at a fixed 1250ms interval.
+</Note>
+
+### Choosing Duration
+
+<CardGroup cols={2}>
+  <Card title="Fast (0.3-0.5s)" icon="rabbit-running">
+    **When to use:**
+    - Quick operations
+    - High-energy interfaces
+    - Gaming or dynamic apps
+    
+    **Example:**
+    ```tsx
+    <Lumidot duration={0.4} pattern="wave-lr" />
+    ```
+  </Card>
+  
+  <Card title="Default (0.6-0.9s)" icon="gauge">
+    **When to use:**
+    - General loading states
+    - Balanced feel
+    - Most applications
+    
+    **Example:**
+    ```tsx
+    <Lumidot duration={0.7} pattern="all" />
+    ```
+  </Card>
+  
+  <Card title="Slow (1.0-1.5s)" icon="turtle">
+    **When to use:**
+    - Calm, meditative UIs
+    - Premium/luxury brands
+    - Background processes
+    
+    **Example:**
+    ```tsx
+    <Lumidot duration={1.2} pattern="frame" />
+    ```
+  </Card>
+  
+  <Card title="Very Slow (1.6s+)" icon="snail">
+    **When to use:**
+    - Ambient animations
+    - Decorative elements
+    - Subtle background motion
+    
+    **Example:**
+    ```tsx
+    <Lumidot duration={2} pattern="sparse-1" />
+    ```
+  </Card>
+</CardGroup>
+
+## Direction
+
+Control the wave direction with the `direction` prop.
+
+### Available Directions
+
+```tsx
+type LumidotDirection = 'ltr' | 'rtl' | 'ttb' | 'btt';
+```
+
+- `'ltr'` — Left to right (default)
+- `'rtl'` — Right to left
+- `'ttb'` — Top to bottom
+- `'btt'` — Bottom to top
+
+### Direction Examples
+
+<CodeGroup>
+
+```tsx Left to Right
+<Lumidot direction="ltr" pattern="all" />
+```
+
+```tsx Right to Left
+<Lumidot direction="rtl" pattern="all" />
+```
+
+```tsx Top to Bottom
+<Lumidot direction="ttb" pattern="all" />
+```
+
+```tsx Bottom to Top
+<Lumidot direction="btt" pattern="all" />
+```
+
+</CodeGroup>
+
+<Info>
+  The `direction` prop is ignored by `wave-*` patterns (e.g., `wave-lr`, `wave-rl`, `wave-tb`, `wave-bt`), which have built-in directions. However, the `spiral` pattern respects `direction` and reverses when `direction` is `'rtl'` or `'btt'`.
+</Info>
+
+### Directional Use Cases
+
+```tsx
+// Progress indicator flowing right
+<Lumidot direction="ltr" pattern="line-h-mid" />
+
+// Reverse progress
+<Lumidot direction="rtl" pattern="frame" />
+
+// Vertical loading
+<Lumidot direction="ttb" pattern="line-v-mid" />
+
+// Bottom-up reveal
+<Lumidot direction="btt" pattern="all" />
+```
+
+## Grid Size
+
+Customize the number of rows and columns in the grid.
+
+### Rows and Columns
+
+```tsx
+// Default 3×3
+<Lumidot rows={3} cols={3} />
+
+// 5×5 grid
+<Lumidot rows={5} cols={5} />
+
+// Rectangular 3×5
+<Lumidot rows={3} cols={5} />
+
+// Single row
+<Lumidot rows={1} cols={5} pattern="line-h-top" />
+
+// Single column
+<Lumidot rows={5} cols={1} pattern="line-v-left" />
+```
+
+<Warning>
+  Most patterns are designed for 3×3 grids. Changing grid size may produce unexpected or less visually appealing results for some patterns.
+</Warning>
+
+### Recommended Grid Sizes
+
+<Tabs>
+  <Tab title="Small (3×3)">
+    **Best for:**
+    - Inline loading indicators
+    - Button loaders
+    - Compact UI elements
+    
+    **Patterns:**
+    All patterns work well
+    
+    ```tsx
+    <Lumidot rows={3} cols={3} pattern="all" />
+    ```
+  </Tab>
+  
+  <Tab title="Medium (5×5)">
+    **Best for:**
+    - Page-level loaders
+    - Modal loading states
+    - Focal loading indicators
+    
+    **Patterns:**
+    `all`, `frame`, `wave-*`, `spiral`
+    
+    ```tsx
+    <Lumidot rows={5} cols={5} pattern="all" scale={1.5} />
+    ```
+  </Tab>
+  
+  <Tab title="Rectangular">
+    **Best for:**
+    - Progress bars
+    - Horizontal/vertical loaders
+    - Custom layouts
+    
+    **Patterns:**
+    `line-h-*`, `line-v-*`, `wave-lr`, `wave-tb`
+    
+    ```tsx
+    <Lumidot rows={1} cols={7} pattern="line-h-top" />
+    <Lumidot rows={7} cols={1} pattern="line-v-left" />
+    ```
+  </Tab>
+</Tabs>
+
+## Styling
+
+Add custom styles with `className` or `style` props.
+
+### Using className
+
+```tsx
+<Lumidot 
+  className="my-custom-loader"
+  pattern="all"
+  variant="emerald"
+/>
+```
+
+```css
+.my-custom-loader {
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f9fafb;
+}
+```
+
+### Using style
+
+```tsx
+<Lumidot 
+  style={{
+    border: '2px solid #e5e7eb',
+    borderRadius: '8px',
+    padding: '12px',
+    background: '#f9fafb'
+  }}
+  pattern="all"
+  variant="blue"
+/>
+```
+
+### Centering
+
+```tsx
+// Flexbox center
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  <Lumidot pattern="spiral" variant="fuchsia" />
+</div>
+
+// Grid center
+<div style={{ display: 'grid', placeItems: 'center', height: '100vh' }}>
+  <Lumidot pattern="all" variant="cyan" />
+</div>
+
+// Absolute center
+<div style={{ position: 'relative', height: '100vh' }}>
+  <Lumidot 
+    style={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)'
+    }}
+    pattern="frame"
+    variant="emerald"
+  />
+</div>
+```
+
+## Advanced Customization
+
+### Combining Props
+
+```tsx
+<Lumidot 
+  pattern="spiral"
+  variant="fuchsia"
+  rows={5}
+  cols={5}
+  scale={2}
+  glow={16}
+  duration={1.2}
+  direction="rtl"
+  className="premium-loader"
+/>
+```
+
+### Conditional Customization
+
+```tsx
+function AdaptiveLoader({ isUrgent }: { isUrgent: boolean }) {
+  return (
+    <Lumidot 
+      variant={isUrgent ? 'red' : 'blue'}
+      pattern={isUrgent ? 'all' : 'frame'}
+      duration={isUrgent ? 0.4 : 0.7}
+      glow={isUrgent ? 12 : 8}
+    />
+  );
+}
+```
+
+### Theme Integration
+
+```tsx
+import { useTheme } from './theme';
+
+function ThemedLoader() {
+  const { isDark, accentColor } = useTheme();
+  
+  return (
+    <Lumidot 
+      variant={accentColor}
+      glow={isDark ? 12 : 4}
+      pattern="all"
+    />
+  );
+}
+```
+
+## Testing
+
+Use the `testId` prop for testing:
+
+```tsx
+<Lumidot testId="main-loader" pattern="all" variant="blue" />
+```
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import { Lumidot } from 'lumidot';
+
+test('renders loader', () => {
+  render(<Lumidot testId="main-loader" />);
+  const loader = screen.getByTestId('main-loader');
+  expect(loader).toBeInTheDocument();
+});
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Patterns" icon="grid" href="/guides/patterns">
+    Explore all 36 animation patterns
+  </Card>
+  <Card title="Accessibility" icon="universal-access" href="/guides/accessibility">
+    Learn about prefers-reduced-motion support
+  </Card>
+</CardGroup>

@@ -1,0 +1,345 @@
+---
+title: 'Custom Grids'
+description: 'Examples with different row and column configurations'
+---
+
+## Grid Dimensions
+
+By default, Lumidot creates a 3x3 grid. You can customize the grid dimensions using the `rows` and `cols` props.
+
+## Wide Grids
+
+Create wide loading indicators with more columns than rows:
+
+<CodeGroup>
+
+```tsx 1x5 Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={1} 
+      cols={5} 
+      pattern="wave-lr" 
+      variant="purple" 
+    />
+  );
+}
+```
+
+```tsx 2x8 Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={2} 
+      cols={8} 
+      pattern="wave-lr" 
+      variant="cyan" 
+    />
+  );
+}
+```
+
+```tsx 3x7 Grid with Frame
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={3} 
+      cols={7} 
+      pattern="frame" 
+      variant="emerald" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Tall Grids
+
+Create tall loading indicators with more rows than columns:
+
+<CodeGroup>
+
+```tsx 5x1 Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={1} 
+      pattern="wave-tb" 
+      variant="rose" 
+    />
+  );
+}
+```
+
+```tsx 8x2 Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={8} 
+      cols={2} 
+      pattern="wave-tb" 
+      variant="amber" 
+    />
+  );
+}
+```
+
+```tsx 7x3 Grid with Frame
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={7} 
+      cols={3} 
+      pattern="frame-sync" 
+      variant="indigo" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Large Square Grids
+
+Create larger square grids for more complex patterns:
+
+<CodeGroup>
+
+```tsx 5x5 Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="spiral" 
+      variant="fuchsia" 
+    />
+  );
+}
+```
+
+```tsx 7x7 Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={7} 
+      cols={7} 
+      pattern="wave-lr" 
+      variant="teal" 
+    />
+  );
+}
+```
+
+```tsx 10x10 Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={10} 
+      cols={10} 
+      pattern="frame" 
+      variant="violet" 
+      scale={1.5}
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Rectangular Grids
+
+Combine custom dimensions with different patterns:
+
+<CodeGroup>
+
+```tsx 4x6 Grid with Diagonals
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={4} 
+      cols={6} 
+      pattern="line-diag-1" 
+      variant="sky" 
+    />
+  );
+}
+```
+
+```tsx 6x4 Grid with Spiral
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={6} 
+      cols={4} 
+      pattern="spiral" 
+      variant="lime" 
+    />
+  );
+}
+```
+
+```tsx 5x8 Grid with All Dots
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={8} 
+      pattern="all" 
+      variant="orange" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Pattern Behavior with Custom Grids
+
+Some patterns adapt intelligently to grid dimensions:
+
+<CodeGroup>
+
+```tsx Center Pattern on 5x5
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="solo-center" 
+      variant="blue" 
+    />
+  );
+}
+```
+
+```tsx Corners on Rectangular Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={4} 
+      cols={7} 
+      pattern="corners-only" 
+      variant="purple" 
+    />
+  );
+}
+```
+
+```tsx Duo Horizontal on Wide Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={3} 
+      cols={9} 
+      pattern="duo-h" 
+      variant="emerald" 
+    />
+  );
+}
+```
+
+```tsx Duo Vertical on Tall Grid
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={9} 
+      cols={3} 
+      pattern="duo-v" 
+      variant="pink" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Combining Grid Size with Scale
+
+Adjust both dimensions and visual scale for precise sizing:
+
+<CodeGroup>
+
+```tsx Large Grid, Small Dots
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={8} 
+      cols={8} 
+      pattern="frame" 
+      variant="cyan" 
+      scale={0.8}
+    />
+  );
+}
+```
+
+```tsx Small Grid, Large Dots
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={2} 
+      cols={2} 
+      pattern="corners-sync" 
+      variant="rose" 
+      scale={2.5}
+    />
+  );
+}
+```
+
+```tsx Wide Grid, Scaled Up
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={2} 
+      cols={10} 
+      pattern="wave-lr" 
+      variant="amber" 
+      scale={1.8}
+    />
+  );
+}
+```
+
+</CodeGroup>

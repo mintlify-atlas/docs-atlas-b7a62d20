@@ -1,0 +1,101 @@
+---
+title: Installation
+description: Install Lumidot in your React project
+---
+
+# Installation
+
+Lumidot is available as an npm package and works with React 18 and 19.
+
+## Package manager
+
+Install Lumidot using your preferred package manager:
+
+<CodeGroup>
+
+```bash npm
+npm install lumidot
+```
+
+```bash yarn
+yarn add lumidot
+```
+
+```bash pnpm
+pnpm add lumidot
+```
+
+</CodeGroup>
+
+## Requirements
+
+Lumidot requires React as a peer dependency:
+
+- `react`: ^18.0.0 or ^19.0.0
+- `react-dom`: ^18.0.0 or ^19.0.0
+
+If you're starting a new React project, these will be installed automatically with your framework of choice.
+
+## Framework compatibility
+
+Lumidot works with all modern React frameworks and setups:
+
+- **Next.js**: Works with both App Router and Pages Router. The component is marked with `'use client'` directive.
+- **Vite**: Full support with Vite's React plugin
+- **Create React App**: Works out of the box
+- **Remix**: Compatible with Remix's React implementation
+- **Gatsby**: Works with Gatsby's React implementation
+
+<Info>
+  Lumidot is a client-side component. If you're using a framework with server-side rendering (like Next.js App Router), the component automatically handles client-side rendering with the `'use client'` directive.
+</Info>
+
+## TypeScript support
+
+Lumidot is built with TypeScript and includes full type definitions. Types are automatically available when you import the component:
+
+```tsx
+import { Lumidot } from 'lumidot';
+import type { LumidotProps, LumidotPattern, LumidotVariant } from 'lumidot';
+```
+
+The package provides these exports:
+
+- `Lumidot`: The main React component
+- `LumidotProps`: TypeScript interface for component props
+- `LumidotPattern`: Union type of all 36 pattern names
+- `LumidotVariant`: Union type of all 20 color variant names
+- `LumidotDirection`: Union type for wave directions (`'ltr' | 'rtl' | 'ttb' | 'btt'`)
+- `PATTERN_NAMES`: Array of all available pattern names
+- `COLORS`: Object mapping variant names to hex color values
+
+<Tip>
+  Import the type definitions to get autocomplete and type checking in your editor.
+</Tip>
+
+## Verify installation
+
+After installation, verify that Lumidot is working by importing it in your app:
+
+```tsx
+import { Lumidot } from 'lumidot';
+
+function App() {
+  return (
+    <div>
+      <h1>Testing Lumidot</h1>
+      <Lumidot />
+    </div>
+  );
+}
+
+export default App;
+```
+
+You should see a blue 3x3 animated dot grid.
+
+## Next steps
+
+<Card title="Quick start" icon="rocket" href="/quickstart">
+  Learn how to use Lumidot with a working example
+</Card>

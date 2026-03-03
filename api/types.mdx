@@ -1,0 +1,226 @@
+---
+title: Types
+description: TypeScript type definitions and exports for Lumidot
+---
+
+Lumidot is written in TypeScript and exports all necessary types for type-safe usage.
+
+## Type Exports
+
+### LumidotProps
+
+The props interface for the Lumidot component.
+
+```typescript
+import type { LumidotProps } from '@lumidot/react';
+
+interface LumidotProps {
+  variant?: LumidotVariant;
+  pattern?: LumidotPattern;
+  rows?: number;
+  cols?: number;
+  glow?: number;
+  scale?: number;
+  duration?: number;
+  direction?: LumidotDirection;
+  className?: string;
+  style?: CSSProperties;
+  testId?: string;
+}
+```
+
+All properties are optional. See [Props](/api/props) for detailed documentation.
+
+### LumidotVariant
+
+Color variant type for the dots.
+
+```typescript
+import type { LumidotVariant } from '@lumidot/react';
+
+type LumidotVariant =
+  | 'amber'
+  | 'blue'
+  | 'cyan'
+  | 'emerald'
+  | 'fuchsia'
+  | 'green'
+  | 'indigo'
+  | 'lime'
+  | 'orange'
+  | 'pink'
+  | 'purple'
+  | 'red'
+  | 'rose'
+  | 'sky'
+  | 'slate'
+  | 'teal'
+  | 'violet'
+  | 'white'
+  | 'black'
+  | 'yellow';
+```
+
+### LumidotPattern
+
+Animation pattern type.
+
+```typescript
+import type { LumidotPattern } from '@lumidot/react';
+
+type LumidotPattern =
+  | 'solo-center'
+  | 'solo-tl'
+  | 'solo-br'
+  | 'line-h-top'
+  | 'line-h-mid'
+  | 'line-h-bot'
+  | 'line-v-left'
+  | 'line-v-mid'
+  | 'line-v-right'
+  | 'line-diag-1'
+  | 'line-diag-2'
+  | 'corners-only'
+  | 'corners-sync'
+  | 'plus-hollow'
+  | 'l-tl'
+  | 'l-tr'
+  | 'l-bl'
+  | 'l-br'
+  | 't-top'
+  | 't-bot'
+  | 't-left'
+  | 't-right'
+  | 'duo-h'
+  | 'duo-v'
+  | 'duo-diag'
+  | 'frame'
+  | 'frame-sync'
+  | 'sparse-1'
+  | 'sparse-2'
+  | 'sparse-3'
+  | 'wave-lr'
+  | 'wave-rl'
+  | 'wave-tb'
+  | 'wave-bt'
+  | 'spiral'
+  | 'all';
+```
+
+### LumidotDirection
+
+Wave animation direction type.
+
+```typescript
+import type { LumidotDirection } from '@lumidot/react';
+
+type LumidotDirection = 'ltr' | 'rtl' | 'ttb' | 'btt';
+```
+
+- `ltr` - Left to right diagonal
+- `rtl` - Right to left diagonal
+- `ttb` - Top to bottom diagonal
+- `btt` - Bottom to top diagonal
+
+## Constant Exports
+
+### PATTERN_NAMES
+
+Array of all available pattern names.
+
+```typescript
+import { PATTERN_NAMES } from '@lumidot/react';
+
+const PATTERN_NAMES: readonly [
+  'solo-center',
+  'solo-tl',
+  'solo-br',
+  // ... (36 patterns total)
+  'spiral',
+  'all',
+];
+```
+
+Useful for iterating over all patterns or building pattern selectors.
+
+### COLORS
+
+Object mapping variant names to hex color values.
+
+```typescript
+import { COLORS } from '@lumidot/react';
+
+const COLORS: {
+  amber: '#fcd34d';
+  blue: '#93c5fd';
+  cyan: '#67e8f9';
+  emerald: '#6ee7b7';
+  fuchsia: '#f0abfc';
+  green: '#86efac';
+  indigo: '#a5b4fc';
+  lime: '#bef264';
+  orange: '#fdba74';
+  pink: '#f9a8d4';
+  purple: '#d8b4fe';
+  red: '#fca5a5';
+  rose: '#fda4af';
+  sky: '#7dd3fc';
+  slate: '#cbd5e1';
+  teal: '#5eead4';
+  violet: '#c4b5fd';
+  white: '#ffffff';
+  black: '#000000';
+  yellow: '#fde047';
+};
+```
+
+### SYNC_PATTERNS
+
+Set of pattern names that use synchronous animation (all dots animate together).
+
+```typescript
+import { SYNC_PATTERNS } from '@lumidot/react';
+
+const SYNC_PATTERNS: Set<string>; // Contains: 'corners-sync', 'frame-sync'
+```
+
+### WAVE_DIRECTIONS
+
+Mapping of wave patterns to their directional behavior.
+
+```typescript
+import { WAVE_DIRECTIONS } from '@lumidot/react';
+
+const WAVE_DIRECTIONS: {
+  'wave-lr': 'lr';
+  'wave-rl': 'rl';
+  'wave-tb': 'tb';
+  'wave-bt': 'bt';
+};
+```
+
+## Usage Example
+
+```typescript
+import { Lumidot, PATTERN_NAMES, COLORS } from '@lumidot/react';
+import type { LumidotProps, LumidotVariant } from '@lumidot/react';
+
+// Type-safe props
+const loaderProps: LumidotProps = {
+  variant: 'blue',
+  pattern: 'wave-lr',
+  rows: 5,
+  cols: 5,
+};
+
+// Iterate over patterns
+PATTERN_NAMES.forEach((pattern) => {
+  console.log(pattern);
+});
+
+// Access color values
+const blueHex = COLORS.blue; // '#93c5fd'
+
+// Type-safe variant
+const myVariant: LumidotVariant = 'emerald';
+```

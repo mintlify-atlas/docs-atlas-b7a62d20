@@ -1,0 +1,465 @@
+---
+title: 'Animations'
+description: 'Examples showcasing wave directions, duration, and sequence animations'
+---
+
+## Wave Directions
+
+Control the direction of wave animations using the `direction` prop. This affects how the animation propagates across the grid.
+
+### Horizontal Waves
+
+<CodeGroup>
+
+```tsx Left to Right
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="all" 
+      direction="ltr" 
+      variant="purple" 
+    />
+  );
+}
+```
+
+```tsx Right to Left
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="all" 
+      direction="rtl" 
+      variant="cyan" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+### Vertical Waves
+
+<CodeGroup>
+
+```tsx Top to Bottom
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="all" 
+      direction="ttb" 
+      variant="emerald" 
+    />
+  );
+}
+```
+
+```tsx Bottom to Top
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="all" 
+      direction="btt" 
+      variant="rose" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Built-in Wave Patterns
+
+Some patterns have built-in wave directions that create specific effects:
+
+<CodeGroup>
+
+```tsx Wave Left to Right
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-lr" 
+      variant="amber" 
+    />
+  );
+}
+```
+
+```tsx Wave Right to Left
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-rl" 
+      variant="indigo" 
+    />
+  );
+}
+```
+
+```tsx Wave Top to Bottom
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-tb" 
+      variant="teal" 
+    />
+  );
+}
+```
+
+```tsx Wave Bottom to Top
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-bt" 
+      variant="violet" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Animation Duration
+
+Control the speed of animations using the `duration` prop (in seconds):
+
+<CodeGroup>
+
+```tsx Fast Animation (0.4s)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-lr" 
+      duration={0.4} 
+      variant="sky" 
+    />
+  );
+}
+```
+
+```tsx Normal Animation (0.7s)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-lr" 
+      duration={0.7} 
+      variant="lime" 
+    />
+  );
+}
+```
+
+```tsx Slow Animation (1.5s)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-lr" 
+      duration={1.5} 
+      variant="orange" 
+    />
+  );
+}
+```
+
+```tsx Very Slow Animation (3s)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="wave-lr" 
+      duration={3} 
+      variant="pink" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Sequence Animations
+
+Some patterns use sequence animations instead of waves, cycling through multiple frames:
+
+<CodeGroup>
+
+```tsx Corners Only (Sequence)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="corners-only" 
+      variant="blue" 
+    />
+  );
+}
+```
+
+```tsx Plus Hollow (Sequence)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="plus-hollow" 
+      variant="fuchsia" 
+    />
+  );
+}
+```
+
+```tsx Spiral (Sequence)
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="spiral" 
+      variant="purple" 
+    />
+  );
+}
+```
+
+```tsx Spiral Reversed
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="spiral" 
+      direction="rtl" 
+      variant="emerald" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Synchronized Patterns
+
+Some patterns animate all dots simultaneously without wave delays:
+
+<CodeGroup>
+
+```tsx Corners Sync
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="corners-sync" 
+      variant="cyan" 
+    />
+  );
+}
+```
+
+```tsx Frame Sync
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      pattern="frame-sync" 
+      variant="rose" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Combining Direction with Patterns
+
+Direction affects how patterns animate across the grid:
+
+<CodeGroup>
+
+```tsx Frame with Left-to-Right
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="frame" 
+      direction="ltr" 
+      variant="amber" 
+    />
+  );
+}
+```
+
+```tsx Frame with Top-to-Bottom
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="frame" 
+      direction="ttb" 
+      variant="indigo" 
+    />
+  );
+}
+```
+
+```tsx Diagonal with Right-to-Left
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="line-diag-1" 
+      direction="rtl" 
+      variant="teal" 
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Duration with Different Grid Sizes
+
+Larger grids may need longer durations for smooth wave effects:
+
+<CodeGroup>
+
+```tsx Small Grid, Fast
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={3} 
+      cols={3} 
+      pattern="wave-lr" 
+      duration={0.5} 
+      variant="violet" 
+    />
+  );
+}
+```
+
+```tsx Large Grid, Moderate
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={7} 
+      cols={7} 
+      pattern="wave-lr" 
+      duration={1.2} 
+      variant="sky" 
+    />
+  );
+}
+```
+
+```tsx Extra Large Grid, Slow
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={10} 
+      cols={10} 
+      pattern="all" 
+      duration={2} 
+      variant="lime" 
+      scale={1.2}
+    />
+  );
+}
+```
+
+</CodeGroup>
+
+## Sparse Patterns with Waves
+
+Sparse patterns create interesting wave effects:
+
+<CodeGroup>
+
+```tsx Sparse-1 Pattern
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="sparse-1" 
+      variant="orange" 
+    />
+  );
+}
+```
+
+```tsx Sparse-2 Pattern
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="sparse-2" 
+      variant="pink" 
+    />
+  );
+}
+```
+
+```tsx Sparse-3 Pattern
+import { Lumidot } from 'lumidot';
+
+export default function App() {
+  return (
+    <Lumidot 
+      rows={5} 
+      cols={5} 
+      pattern="sparse-3" 
+      variant="red" 
+    />
+  );
+}
+```
+
+</CodeGroup>

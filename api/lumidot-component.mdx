@@ -1,0 +1,74 @@
+---
+title: Lumidot Component
+description: Main Lumidot component for creating animated dot loaders
+---
+
+The `Lumidot` component is the core of the library, providing customizable animated dot patterns with various effects and styles.
+
+## Import
+
+```tsx
+import { Lumidot } from '@lumidot/react';
+```
+
+## Basic Usage
+
+```tsx
+import { Lumidot } from '@lumidot/react';
+
+export default function App() {
+  return <Lumidot variant="blue" pattern="wave-lr" />;
+}
+```
+
+## With Custom Configuration
+
+```tsx
+<Lumidot
+  variant="emerald"
+  pattern="spiral"
+  rows={5}
+  cols={5}
+  glow={12}
+  scale={1.5}
+  duration={1}
+  direction="ltr"
+/>
+```
+
+## Ref Support
+
+The Lumidot component supports React refs through `React.forwardRef`:
+
+```tsx
+const lumidotRef = useRef<HTMLSpanElement>(null);
+
+<Lumidot ref={lumidotRef} variant="blue" />
+```
+
+## Component Properties
+
+For detailed information about all available props, see the [Props](/api/props) documentation.
+
+For type definitions, see the [Types](/api/types) documentation.
+
+## Accessibility
+
+The component automatically includes accessibility attributes:
+- `role="status"` for screen readers
+- `aria-label="Loading"` to describe the loading state
+- Respects `prefers-reduced-motion` for sequence animations
+
+## Data Attributes
+
+The component exposes several data attributes for styling and testing:
+
+- `data-lumidot` - Present on the root element
+- `data-lumidot-pattern` - Current pattern name
+- `data-lumidot-variant` - Current color variant
+- `data-lumidot-rows` - Number of rows
+- `data-lumidot-cols` - Number of columns
+- `data-lumidot-direction` - Animation direction
+- `data-lumidot-mode` - Either "sequence" or "wave"
+- `data-lumidot-dot` - Present on each dot element
+- `data-lumidot-dot-active` - Boolean indicating if dot is currently active
