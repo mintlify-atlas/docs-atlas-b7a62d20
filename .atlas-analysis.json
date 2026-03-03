@@ -1,0 +1,66 @@
+{
+  "projectType": "sdk-library",
+  "projectName": "Lumidot",
+  "projectDescription": "Dot-grid loading animations for React with 36 patterns and 20 color variants",
+  "theme": "palm",
+  "primaryColor": "#93c5fd",
+  "lightColor": "#7dd3fc",
+  "darkColor": "#6366f1",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": [
+          "introduction",
+          "installation",
+          "quickstart"
+        ]
+      },
+      {
+        "group": "Guides",
+        "pages": [
+          "guides/patterns",
+          "guides/colors",
+          "guides/customization",
+          "guides/accessibility"
+        ]
+      },
+      {
+        "group": "API Reference",
+        "pages": [
+          "api/lumidot-component",
+          "api/props",
+          "api/types"
+        ]
+      },
+      {
+        "group": "Examples",
+        "pages": [
+          "examples/basic-usage",
+          "examples/custom-grids",
+          "examples/animations"
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "36 named dot-grid animation patterns (solo, lines, corners, shapes, waves, spiral)",
+    "20 built-in color variants with customizable glow effects",
+    "Flexible grid system with configurable rows, columns, and scale",
+    "Wave and sequence animation modes with directional control",
+    "Respects prefers-reduced-motion for accessibility",
+    "Tiny bundle size with zero dependencies",
+    "TypeScript support with full type definitions"
+  ],
+  "publicApiSurface": [
+    "Lumidot - Main React component for dot-grid loading animations",
+    "LumidotProps - TypeScript interface for component props",
+    "LumidotVariant - Type for color variants (20 colors)",
+    "LumidotPattern - Type for animation patterns (36 patterns)",
+    "LumidotDirection - Type for wave direction (ltr, rtl, ttb, btt)",
+    "PATTERN_NAMES - Constant array of all available pattern names",
+    "COLORS - Constant object mapping variant names to hex colors",
+    "SYNC_PATTERNS - Set of patterns using synchronized animation",
+    "WAVE_DIRECTIONS - Mapping of wave pattern names to directions"
+  ]
+}
