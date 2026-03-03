@@ -12,7 +12,7 @@ Lumidot is written in TypeScript and exports all necessary types for type-safe u
 The props interface for the Lumidot component.
 
 ```typescript
-import type { LumidotProps } from '@lumidot/react';
+import type { LumidotProps } from 'lumidot';
 
 interface LumidotProps {
   variant?: LumidotVariant;
@@ -36,7 +36,7 @@ All properties are optional. See [Props](/api/props) for detailed documentation.
 Color variant type for the dots.
 
 ```typescript
-import type { LumidotVariant } from '@lumidot/react';
+import type { LumidotVariant } from 'lumidot';
 
 type LumidotVariant =
   | 'amber'
@@ -66,7 +66,7 @@ type LumidotVariant =
 Animation pattern type.
 
 ```typescript
-import type { LumidotPattern } from '@lumidot/react';
+import type { LumidotPattern } from 'lumidot';
 
 type LumidotPattern =
   | 'solo-center'
@@ -112,7 +112,7 @@ type LumidotPattern =
 Wave animation direction type.
 
 ```typescript
-import type { LumidotDirection } from '@lumidot/react';
+import type { LumidotDirection } from 'lumidot';
 
 type LumidotDirection = 'ltr' | 'rtl' | 'ttb' | 'btt';
 ```
@@ -129,7 +129,7 @@ type LumidotDirection = 'ltr' | 'rtl' | 'ttb' | 'btt';
 Array of all available pattern names.
 
 ```typescript
-import { PATTERN_NAMES } from '@lumidot/react';
+import { PATTERN_NAMES } from 'lumidot';
 
 const PATTERN_NAMES: readonly [
   'solo-center',
@@ -148,7 +148,7 @@ Useful for iterating over all patterns or building pattern selectors.
 Object mapping variant names to hex color values.
 
 ```typescript
-import { COLORS } from '@lumidot/react';
+import { COLORS } from 'lumidot';
 
 const COLORS: {
   amber: '#fcd34d';
@@ -179,7 +179,7 @@ const COLORS: {
 Set of pattern names that use synchronous animation (all dots animate together).
 
 ```typescript
-import { SYNC_PATTERNS } from '@lumidot/react';
+import { SYNC_PATTERNS } from 'lumidot';
 
 const SYNC_PATTERNS: Set<string>; // Contains: 'corners-sync', 'frame-sync'
 ```
@@ -189,7 +189,7 @@ const SYNC_PATTERNS: Set<string>; // Contains: 'corners-sync', 'frame-sync'
 Mapping of wave patterns to their directional behavior.
 
 ```typescript
-import { WAVE_DIRECTIONS } from '@lumidot/react';
+import { WAVE_DIRECTIONS } from 'lumidot';
 
 const WAVE_DIRECTIONS: {
   'wave-lr': 'lr';
@@ -202,8 +202,8 @@ const WAVE_DIRECTIONS: {
 ## Usage Example
 
 ```typescript
-import { Lumidot, PATTERN_NAMES, COLORS } from '@lumidot/react';
-import type { LumidotProps, LumidotVariant } from '@lumidot/react';
+import { Lumidot, PATTERN_NAMES, COLORS } from 'lumidot';
+import type { LumidotProps, LumidotVariant } from 'lumidot';
 
 // Type-safe props
 const loaderProps: LumidotProps = {
